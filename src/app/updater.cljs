@@ -16,7 +16,11 @@
             :user/sign-up user/sign-up
             :user/log-out user/log-out
             :router/change router/change
-            :workspace/add-point workspace/add-point
-            :workspace/update-point workspace/update-point
+            :workspace/add-line workspace/add-line
+            :workspace/move-line-point workspace/move-line-point
+            :workspace/move-line-base workspace/move-line-base
+            :workspace/add-line-point workspace/add-line-point
+            :workspace/reduce-line-point workspace/reduce-line-point
+            :workspace/toggle-line-width workspace/toggle-line-width
             (do (println "Unknown op:" op) identity))]
     (f db op-data sid op-id op-time)))
