@@ -19,7 +19,9 @@
    (container
     {}
     (comp-button
-     {:text "Add", :position [320 20], :on-click (fn [e d!] (d! :workspace/add-line nil))})
+     {:text "Add",
+      :position [320 20],
+      :on {:click (fn [e d!] (d! :workspace/add-line nil))}})
     (create-list
      :container
      {}
@@ -27,18 +29,16 @@
           (map
            (fn [[k line-config]]
              [k
-              (let [base-point (or (:base line-config) [100 0])]
+              (let [base-point (or (:base line-config) [100 0])
+                    tail-point (add-path base-point (peek (:points line-config)))]
                 (container
-                 {:position base-point}
+                 {:position [0 0]}
                  (comp-drag-point
                   (>> states (str :base k))
                   {:position base-point,
                    :hide-text? true,
                    :radius 4,
-                   :unit 0.5,
-                   :on-change (fn [position d!]
-                     (println "p" position)
-                     (d! :workspace/move-line-base [k position]))})
+                   :on-change (fn [position d!] (d! :workspace/move-line-base [k position]))})
                  (create-list
                   :container
                   {}
@@ -62,4 +62,28 @@
                           (g
                            :line-style
                            {:color (hslx 0 0 90), :width (:width line-config), :alpha 1})]
-                         (->> (:points line-config) (map (fn [point] (g :line-to point)))))})))])))))))
+                         (->> (:points line-config) (map (fn [point] (g :line-to point)))))})
+                 (rect
+                  {:position (add-path [8 -12] tail-point),
+                   :size [12 12],
+                   :fill (hslx 0 0 20),
+                   :on {:click (fn [e d!] (d! :workspace/add-line-point k))}}
+                  (text
+                   {:position [2 0],
+                    :text "+",
+                    :style {:fill (hslx 0 0 50),
+                            :font-size 12,
+                            :line-height 12,
+                            :font-family ui/font-code}}))
+                 (rect
+                  {:position (add-path [8 8] tail-point),
+                   :size [12 12],
+                   :fill (hslx 0 0 20),
+                   :on {:click (fn [e d!] (d! :workspace/reduce-line-point k))}}
+                  (text
+                   {:position [2 0],
+                    :text "-",
+                    :style {:fill (hslx 0 0 50),
+                            :font-size 12,
+                            :line-height 12,
+                            :font-family ui/font-code}}))))])))))))

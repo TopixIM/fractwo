@@ -17,12 +17,12 @@
       false)))
 
 (def site
-  {:port 11019,
-   :title "Cumulo Phlox",
+  {:port 11020,
+   :title "Fractwo",
    :icon "http://cdn.tiye.me/logo/cumulo.png",
    :dev-ui "http://localhost:8100/main.css",
    :release-ui "http://cdn.tiye.me/favored-fonts/main.css",
-   :cdn-url "http://cdn.tiye.me/cumulo-phlox-workflow/",
+   :cdn-url "http://cdn.tiye.me/fractwo/",
    :theme "#eeeeff",
-   :storage-key "cumulo-phlox-workflow",
+   :storage-key "fractwo",
    :storage-file "storage.edn"})
