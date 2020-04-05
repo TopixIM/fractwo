@@ -28,4 +28,4 @@
                 :fill (hslx 0 0 50),
                 :font-size 40,
                 :font-weight 300}})
-      (container {} (comp-workspace (>> states :workspace) (:points store)))))))
+      (container {} (comp-workspace (>> states :workspace) (:lines store)))))))

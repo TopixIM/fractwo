@@ -12,4 +12,6 @@
 
 (def user {:name nil, :id nil, :nickname nil, :avatar nil, :password nil})
 
-(def database {:sessions (do session {}), :users (do user {}), :points {}})
+(def database {:sessions (do session {}), :users (do user {}), :lines {}})
+
+(def line-config {:points [[100 0]], :width 2, :base [200 10]})
