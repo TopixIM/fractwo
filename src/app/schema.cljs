@@ -14,4 +14,7 @@
 
 (def database {:sessions (do session {}), :users (do user {}), :lines {}})
 
-(def line-config {:points [[100 0]], :width 2, :base [200 10]})
+(def line-config
+  {:points {"0" [(rand-int 10) (rand-int 10)], "1" [(+ 100 (rand-int 10)) (rand-int 10)]},
+   :width 2,
+   :base [200 10]})
